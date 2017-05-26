@@ -6,11 +6,16 @@
 # include <stdio.h>
 #include <stdlib.h>
 
+//Funcao que ira ordenadr
 void quick_sort(int vetor[],int primeiro,int ultimo)
-{
+{	
+	//Iniciando variaveis
 	int inicio,fim,pivo,aux;
+	//Definir parametros variaveis inferior
 	inicio = primeiro;
+	//Definir parametro variavel superior
 	fim = ultimo;
+	//Pivo e a metade
 	pivo = vetor[(inicio+fim)/2];
 
 	while(inicio<=fim)
@@ -42,12 +47,16 @@ void quick_sort(int vetor[],int primeiro,int ultimo)
 	}
 }
 
+//Funcao que ira mostrar vetor na tela
 void show_vector(int vetor[],int tamanho)
-{
+{	//Contador
 	int i=0;
+	//Pecorrer todo o vetor
 	while(tamanho>i)
 	{
+		//Imprime
 		printf("%d\n",vetor[i]);
+		//Incremente contador
 		i++;
 	}
 }

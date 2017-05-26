@@ -17,34 +17,107 @@ void show_time(time_t inicio,time_t fim)
 	printf("O tempo de execucao em segundos é %f\n", difftime(fim, inicio));
 }
 
-void radixsort(int vetor[], int tamanho) {
-    int i;
-    int *b;
-    int maior = vetor[0];
-    int exp = 1;
+int acha_maior(int vetor[],int tamanho)
+{
+	int i;
+	int maior=vetor[0];
 
-    b = (int *)calloc(tamanho, sizeof(int));
-
-    for (i = 0; i < tamanho; i++) {
+	for (i = 0; i < tamanho; i++) 
+    {
         if (vetor[i] > maior)
     	    maior = vetor[i];
     }
+
+    return maior;
+}
+
+void algarismo(int contagem[],int vetor[],int tamanho,int exp)
+{
+	int i;
+	int numero;
+	for (i = 0; i < tamanho; i++)
+	{
+    	numero = (vetor[i]/exp)%10;
+    	contagem[numero]=contagem[numero] + 1;
+    }
+}
+
+void soma_anteriores(int contagem[])
+{
+	int i;
+	for (i = 1; i < 10; i++)
+    {
+        contagem[i] = contagem[i] + contagem[i-1];
+    }
+}
+
+void altera_posicao(int contagem[],int vetor[],int vetor_aux[],int tamanho,int exp)
+{
+	int posicao;
+	int aux;
+	int i;
+
+	for(i= tamanho-1;i>=0;i--)
+	{
+		aux = (vetor[i]/exp)%10;
+		
+		posicao = contagem[aux];
+
+		contagem[aux]=  posicao-1;
+
+		vetor_aux[posicao-1]=vetor[i];
+	}
+}
+
+void show_vector(int vetor[],int tamanho)
+{
+	int i=0;
+	while(tamanho>i)
+	{
+		printf("%d\n",vetor[i]);
+		i++;
+	}
+}
+void troca_vetor(int vetor[],int vetor_aux[],int tamanho)
+{
+	int i;
+	for (i = 0; i < tamanho; i++)
+    {
+        vetor[i] = vetor_aux[i];
+    }
+}
+
+void radixsort(int vetor[], int tamanho) 
+{
+    int i;
+    int *vetor_aux;
+    int exp = 1;
+    int maior;
+
+    vetor_aux = (int *)calloc(tamanho, sizeof(int));
+
+    maior = acha_maior(vetor,tamanho);
  
-    while (maior/exp > 0) {
-        int bucket[10] = { 0 };
-    	for (i = 0; i < tamanho; i++)
-    	    bucket[(vetor[i] / exp) % 10]++; 
-    	for (i = 1; i < 10; i++)
-    	    bucket[i] += bucket[i - 1];
-    	for (i = tamanho - 1; i >= 0; i--)
-    	    b[--bucket[(vetor[i] / exp) % 10]] = vetor[i];
-    	for (i = 0; i < tamanho; i++)
-    	    vetor[i] = b[i];
+    while (maior/exp > 0) 
+    {
+
+        int contagem[10] = { 0 };
+
+        algarismo(contagem,vetor,tamanho,exp);
+
+        soma_anteriores(contagem);
+
+        altera_posicao(contagem,vetor,vetor_aux,tamanho,exp);
+
+        troca_vetor(vetor,vetor_aux,tamanho);
+
     	exp *= 10;
     }
 
-    free(b);
+    free(vetor_aux);
 }
+
+
 int main()
 {
 	//Variaveis que irao marcar o tempo decorrido
@@ -52,34 +125,30 @@ int main()
 
 	inicio = time(NULL);
 
+	//Variavel que ira receber a quantidade numeros
+	int t;
+	//Contador
+	int i=0;
+	//Tamanho maximo do vetor
+	int vetor[1000000];
 
+	//Numero de vezes que sera digitado um numero
+	scanf("%d",&t);
 
-	int vetor[10];
-
-	for (int i = 0; i < 10; ++i)
+	//Lendo T numeros e salvando no vetor.
+	while(t>i)
 	{
-		vetor[i]= i *4;
-
-		if(i==4)
-		{
-			vetor[i]=0;
-		}
-		if(i==1)
-		{
-			vetor[i]=10;
-		}
+		scanf("%d",&vetor[i]);
+		i++;
 	}
+	//Tamanho e t-1 para nao acessar possicoes invalidas
+	int size = t ;
 
-	radixsort(vetor,10);
+	//Ordena
+	radixsort(vetor,size);
 
-	for (int i = 0; i < 10; ++i)
-	{
-		printf("%d\n",vetor[i] );
-	}
-
-
-
-
+	//Mostra vetor ordenado
+	show_vector(vetor,t);
 
 	fim = time(NULL);
 

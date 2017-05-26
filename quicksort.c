@@ -74,8 +74,10 @@ int main()
 	}
 	//Tamanho e t-1 para nao acessar possicoes invalidas
 	int size = t -1;
+
 	//Ordena vetor
 	quick_sort(vetor,0,size);
+	
 	//Mostra vetor ordenado
 	show_vector(vetor,t);
 

@@ -54,11 +54,11 @@ int main()
 
 
 
-	int vetor[100000000];
+	int vetor[10];
 
-	for (int i = 0; i < 100000000; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
-		vetor[i]= i *393209310;
+		vetor[i]= i *4;
 
 		if(i==4)
 		{
@@ -66,11 +66,11 @@ int main()
 		}
 		if(i==1)
 		{
-			vetor[i]=1000;
+			vetor[i]=10;
 		}
 	}
 
-	radixsort(vetor,100000000);
+	radixsort(vetor,10);
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -84,12 +84,6 @@ int main()
 	fim = time(NULL);
 
 	show_time(inicio,fim);
-
-
-
-
-
-
 
 	return 0;
 }

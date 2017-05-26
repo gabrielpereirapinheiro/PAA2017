@@ -52,10 +52,15 @@ void show_vector(int vetor[],int tamanho)
 	}
 }
 
+
+//Funcao principal
 int main()
 {
+	//Variavel que ira receber a quantidade numeros
 	int t;
+	//Contador
 	int i=0;
+	//Tamanho maximo do vetor
 	int vetor[1000000];
 
 	//Numero de vezes que sera digitado um numero
@@ -67,8 +72,11 @@ int main()
 		scanf("%d",&vetor[i]);
 		i++;
 	}
+	//Tamanho e t-1 para nao acessar possicoes invalidas
 	int size = t -1;
+	//Ordena vetor
 	quick_sort(vetor,0,size);
+	//Mostra vetor ordenado
 	show_vector(vetor,t);
 
 }

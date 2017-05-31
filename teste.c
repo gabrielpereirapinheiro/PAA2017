@@ -2,12 +2,12 @@
 
 int main()
 {
-	int x=90;
-	int b;
-	b = x  & 0x000f;
+	unsigned int x=256;
+	unsigned int b;
+	x = 257 & x;
 
 
-	printf("a %d ",b );
+	printf("x%d ",x );
 
 	return 0;
 }

@@ -60,14 +60,10 @@ void altera_posicao(int contagem[],int vetor[],int vetor_aux[],int vetorOriginal
 	for(i= tamanho-1;i>=0;i--)
 	{
 		aux = (vetor[i]/exp)%10;
-				
 		posicao = contagem[aux];
-
 		contagem[aux]=  posicao-1;
 		vetor_aux[posicao-1]=vetor[i];
 		vetor_aux2[posicao-1]=vetorOriginal[i];
-
-		printf("vetor_aux[%d]= %d /// vetor = %d e vetorOriginal %d ",posicao-1,vetor_aux[posicao-1],vetor[i],vetorOriginal[i]);
 	}
 }
 
@@ -76,7 +72,7 @@ void show_vector(int vetor[],int tamanho)
 	int i=0;
 	while(tamanho>i)
 	{
-		printf("--%d\n",vetor[i]);
+		printf("%d\n",vetor[i]);
 		i++;
 	}
 }
@@ -87,7 +83,6 @@ void troca_vetor(int vetor[],int vetor_aux[],int vetorOriginal[],int vetor_aux2[
     {
         vetor[i] = vetor_aux[i];
         vetorOriginal[i] = vetor_aux2[i];
-        printf("vetor[%d] = %d \n",i,vetor[i]);
     }
 } 
 void radixsort(unsigned int vetor[],unsigned int vetorOriginal[], int tamanho) 
@@ -105,7 +100,6 @@ void radixsort(unsigned int vetor[],unsigned int vetorOriginal[], int tamanho)
  
     while (maior/exp > 0) 
     {
-    	printf("maior %d e exp %d\n",maior ,exp );
         int contagem[10] = { 0 };
 
         algarismo(contagem,vetor,tamanho,exp);
@@ -125,15 +119,15 @@ void radixsort(unsigned int vetor[],unsigned int vetorOriginal[], int tamanho)
 void vetor_passo(unsigned int vetor_aux[],int unsigned vetor[],int mul,int tamanho)
 {
 	int i;
-	unsigned int a = 255;
+	unsigned int a = 0x000000ff;//255
 	unsigned int b = 65280;//0x00f0
 	unsigned int c = 16711680;
+	unsigned int d = 4278190080; 
 	if(mul==1)
 	{
 		for (int i = 0; i < tamanho; ++i)
 		{
 			vetor_aux[i] = vetor[i] & a;
-			printf("vetor_aux %d\n",vetor_aux[i] );
 		}
 	}
 	if (mul==2)
@@ -141,7 +135,6 @@ void vetor_passo(unsigned int vetor_aux[],int unsigned vetor[],int mul,int taman
 		for (int i = 0; i < tamanho; ++i)
 		{
 			vetor_aux[i] = vetor[i] & b;
-			printf("vetor_aux2 %d\n",vetor_aux[i] );
 		}
 	}
 	if (mul==3)
@@ -149,7 +142,13 @@ void vetor_passo(unsigned int vetor_aux[],int unsigned vetor[],int mul,int taman
 		for (int i = 0; i < tamanho; ++i)
 		{
 			vetor_aux[i] = vetor[i] & c;
-			printf("vetor aux3 %d\n",vetor_aux[i] );
+		}
+	}
+	if (mul==4)
+	{
+		for (int i = 0; i < tamanho; ++i)
+		{
+			vetor_aux[i] = vetor[i] & d;
 		}
 	}
 }
@@ -165,6 +164,12 @@ void ordena(int vetor[],int tamanho, int passos)
 		show_vector(vetor,tamanho);
 
 		vetor_passo(vetor_bin,vetor,2,tamanho);
+		radixsort(vetor_bin,vetor,tamanho);
+
+		vetor_passo(vetor_bin,vetor,3,tamanho);
+		radixsort(vetor_bin,vetor,tamanho);
+
+		vetor_passo(vetor_bin,vetor,4,tamanho);
 		radixsort(vetor_bin,vetor,tamanho);
 
 	}
@@ -202,12 +207,12 @@ int main()
 	ordena(vetor,size,passos);
 
 	//Mostra vetor ordenado
-	printf("final\n");
+
 	show_vector(vetor,t);
 
 	fim = time(NULL);
 
-	show_time(inicio,fim);
+	//show_time(inicio,fim);
 
 	return 0;
 }

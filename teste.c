@@ -2,13 +2,12 @@
 
 int main()
 {
-	signed int x=8;
+	int x=90;
+	int b;
+	b = x  & 0x000f;
 
-	signed int a;
 
-	a = x <<2;
-
-	printf("a %d\n",a );
+	printf("a %d ",b );
 
 	return 0;
 }

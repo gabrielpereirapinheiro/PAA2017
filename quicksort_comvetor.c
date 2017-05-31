@@ -63,6 +63,17 @@ void show_vector(int vetor[],int tamanho)
 	}
 }
 
+void gera_vetor(int vetor[],int size)
+{
+	int i=0;
+
+	for (int i = 0; i < size; ++i)
+	{
+
+		vetor[i]=size-i;
+		printf("%d\n",vetor[i] );
+	}
+}
 
 //Funcao principal
 int main()
@@ -72,24 +83,18 @@ int main()
 	//Contador
 	int i=0;
 	//Tamanho maximo do vetor
-	int vetor[1000000];
+	int size =1000000;
+	int vetor[size];
+	
+	gera_vetor(vetor,size);
 
-	//Numero de vezes que sera digitado um numero
-	scanf("%d",&t);
-
-	//Lendo T numeros e salvando no vetor.
-	while(t>i)
-	{
-		scanf("%d",&vetor[i]);
-		i++;
-	}
 	//Tamanho e t-1 para nao acessar possicoes invalidas
-	int size = t -1;
+	
 
 	//Ordena vetor
 	quick_sort(vetor,0,size);
 	
 	//Mostra vetor ordenado
-	show_vector(vetor,t);
+	show_vector(vetor,size);
 
 }

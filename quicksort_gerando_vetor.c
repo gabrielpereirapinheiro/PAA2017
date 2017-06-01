@@ -54,14 +54,14 @@ void quick_sort(long int vetor[],long int primeiro,long int ultimo)
 }
 
 //Funcao que ira mostrar vetor na tela
-void show_vector(long int vetor[],long int tamanho)
+void show_vector(long int vetor[],int tamanho)
 {	//Contador
-	double i=0;
+	int i=0;
 	//Pecorrer todo o vetor
 	while(tamanho>i)
 	{
 		//Imprime
-		//printf("%lf\n",vetor[i]);
+		printf("%ld\n",vetor[i]);
 		//Incremente contador
 		i++;
 	}
@@ -80,7 +80,7 @@ void gera_vetor(long int vetor[],long int tamanho,int opcao)
 		for (long int i= 0; i < tamanho; ++i)
 		{
 			//O numero 5 foi escolhido ao acaso
-			//vetor[i]=1;
+			vetor[i]=1;
 		}
 	}
 }

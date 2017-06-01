@@ -12,9 +12,9 @@
  *Recebe: o tempo inicio e o tempo final do programa
  *Retorna: 
 */
-void show_time(time_t inicio,time_t fim)
+void show_time(clock_t inicio,clock_t fim)
 {	
-	printf("O tempo de execucao em segundos é %f\n", difftime(fim, inicio));
+	printf("Elapsed time : %f seconds\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
 }
 
 int acha_maior(int vetor[],int tamanho)
@@ -161,8 +161,7 @@ void ordena(int vetor[],int tamanho, int passos)
 
 		vetor_passo(vetor_bin,vetor,1,tamanho);
 		radixsort(vetor_bin,vetor,tamanho);
-		show_vector(vetor,tamanho);
-
+	
 		vetor_passo(vetor_bin,vetor,2,tamanho);
 		radixsort(vetor_bin,vetor,tamanho);
 
@@ -171,26 +170,17 @@ void ordena(int vetor[],int tamanho, int passos)
 
 		vetor_passo(vetor_bin,vetor,4,tamanho);
 		radixsort(vetor_bin,vetor,tamanho);
-
 	}
 }
-
-
-
 int main()
-{
-	//Variaveis que irao marcar o tempo decorrido
-	time_t inicio, fim;
-
-	inicio = time(NULL);
-
+{	
+	clock_t inicio = clock();
 	//Variavel que ira receber a quantidade numeros
 	int t;
 	//Contador
 	int i=0;
 	//Tamanho maximo do vetor
 	unsigned int vetor[1000000];
-
 	//Numero de vezes que sera digitado um numero
 	scanf("%d",&t);
 
@@ -200,19 +190,18 @@ int main()
 		scanf("%d",&vetor[i]);
 		i++;
 	}
+	
 	//Tamanho e t-1 para nao acessar possicoes invalidas
 	int size = t ;
-	int passos =4 ;
-	//Ordena
+	int passos =4;
+	//Ordena , funcao que ira chamar o radix
 	ordena(vetor,size,passos);
-
 	//Mostra vetor ordenado
-
 	show_vector(vetor,t);
-
-	fim = time(NULL);
-
-	//show_time(inicio,fim);
+	//Variavel para fim do tempo
+	clock_t fim = clock();
+	//Mostra o tempo
+	show_time(inicio,fim);
 
 	return 0;
 }

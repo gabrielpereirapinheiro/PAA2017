@@ -179,13 +179,24 @@ void ordena(int vetor[],int tamanho, int passos)
 	}
 }
 
-void gera_vetor(int vetor[],int tamanho)
+void gera_vetor(int vetor[],int tamanho,int opcao)
 {
-	for (int i = 0; i < tamanho; ++i)
+	if (opcao==1)
 	{
-		vetor[i]=tamanho-i;
+		for (long int i = 0; i < tamanho; ++i)
+		{
+			vetor[i]=tamanho-i;
+		}
+	}
+	if(opcao==2)
+	{
+		for (long int i= 0; i < tamanho; ++i)
+		{
+			vetor[i]=1;
+		}
 	}
 }
+
 int recebe_do_usuario()
 {
 	int qnt;
@@ -212,6 +223,24 @@ int recebe_do_usuario()
 
 	return qnt;
 }
+int recebe_do_usuario_opcao()
+{
+	int opcao;
+
+	printf("\nEscolha o estado do vetor inicial:");
+	printf("\n1 - Decrescente\n");
+	printf("2 - Todo preenchido com um numero\n");
+	printf("-> ");
+	scanf("%d",&opcao);
+
+	while(opcao!=1 && opcao!=2)
+	{
+		printf("Escolha entre 1 ou 2\n->");
+		scanf("%d",&opcao);
+	}
+	return opcao;
+}
+
 
 int main()
 {	
@@ -226,9 +255,11 @@ int main()
 
 	int passos;
 	passos = recebe_do_usuario();
+	int opcap_vetor;
+	opcap_vetor = recebe_do_usuario_opcao();
 	
 	//Funcao que gera vetor decrescente
-	gera_vetor(vetor,size);
+	gera_vetor(vetor,size,opcap_vetor);
 
 	//Inicia o tempo
 	clock_t inicio = clock();//Ordena , funcao que ira chamar o radix

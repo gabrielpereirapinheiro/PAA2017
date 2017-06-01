@@ -5,17 +5,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
-
-/*Funcao que mostra o tempo de execucao total do programa
- *Recebe: o tempo inicio e o tempo final do programa
- *Retorna: 
-*/
-void show_time(time_t inicio,time_t fim)
-{	
-	printf("O tempo de execucao em segundos é %f\n", difftime(fim, inicio));
-}
 
 int acha_maior(int vetor[],int tamanho)
 {
@@ -120,10 +109,6 @@ void radixsort(int vetor[], int tamanho)
 
 int main()
 {
-	//Variaveis que irao marcar o tempo decorrido
-	time_t inicio, fim;
-
-	inicio = time(NULL);
 
 	//Variavel que ira receber a quantidade numeros
 	int t;
@@ -149,10 +134,6 @@ int main()
 
 	//Mostra vetor ordenado
 	show_vector(vetor,t);
-
-	fim = time(NULL);
-
-	show_time(inicio,fim);
 
 	return 0;
 }

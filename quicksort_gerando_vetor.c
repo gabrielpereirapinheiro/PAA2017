@@ -10,10 +10,11 @@
 
 
 //Funcao que ira ordenadr
-void quick_sort(double vetor[],double primeiro,int ultimo)
+void quick_sort(double vetor[],double primeiro,double ultimo)
 {	
 	//Iniciando variaveis
-	int inicio,fim,pivo,aux;
+	long int inicio,fim;
+	double pivo,aux;
 	//Definir parametros variaveis inferior
 	inicio = primeiro;
 	//Definir parametro variavel superior
@@ -53,33 +54,33 @@ void quick_sort(double vetor[],double primeiro,int ultimo)
 }
 
 //Funcao que ira mostrar vetor na tela
-void show_vector(double vetor[],int tamanho)
+void show_vector(double vetor[],double tamanho)
 {	//Contador
-	int i=0;
+	double i=0;
 	//Pecorrer todo o vetor
 	while(tamanho>i)
 	{
 		//Imprime
-		printf("%lf\n",vetor[i]);
+		//printf("%lf\n",vetor[i]);
 		//Incremente contador
 		i++;
 	}
 }
-void gera_vetor(double vetor[],int tamanho,int opcao)
+void gera_vetor(double vetor[],double tamanho,int opcao)
 {
 	if (opcao==1)
 	{
-		for (int i = 0; i < tamanho; ++i)
+		for (long int i = 0; i < tamanho; ++i)
 		{
 			vetor[i]=tamanho-i;
 		}
 	}
-	else
+	if(opcao==2)
 	{
-		for (int i = 0; i < tamanho; ++i)
+		for (long int i= 0; i < tamanho; ++i)
 		{
 			//O numero 5 foi escolhido ao acaso
-			vetor[i]=5;
+			//vetor[i]=1;
 		}
 	}
 }
@@ -118,25 +119,23 @@ void show_time(clock_t inicio,clock_t fim)
 //Funcao principal
 int main()
 {
-	//Variavel que ira receber a quantidade numeros
-	int t;
-	//Contador
-	int i=0;
 	//Tamanho maximo do vetor
-	double vetor[1000000];
+	double vetor[100000000];
 
-	double size=1000000;
+	double size = 10000;
 
 	inicio_tela();
 
 	int opcao = recebe_opcao();
 	
-	gera_vetor(vetor,size,opcao);
+	gera_vetor(vetor,size-1,opcao);
 	//Tamanho e t-1 para nao acessar possicoes invalidas
 
+	double last = size-1;
 	clock_t inicio = clock();
+
 	//Ordena vetor
-	quick_sort(vetor,0,size-1);
+	quick_sort(vetor,0,last);
 		//Variavel para fim do tempo
 	clock_t fim = clock();
 

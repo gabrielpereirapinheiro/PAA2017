@@ -10,11 +10,11 @@
 
 
 //Funcao que ira ordenadr
-void quick_sort(double vetor[],double primeiro,double ultimo)
+void quick_sort(long int vetor[],long int primeiro,long int ultimo)
 {	
 	//Iniciando variaveis
 	long int inicio,fim;
-	double pivo,aux;
+	long int pivo,aux;
 	//Definir parametros variaveis inferior
 	inicio = primeiro;
 	//Definir parametro variavel superior
@@ -54,7 +54,7 @@ void quick_sort(double vetor[],double primeiro,double ultimo)
 }
 
 //Funcao que ira mostrar vetor na tela
-void show_vector(double vetor[],double tamanho)
+void show_vector(long int vetor[],long int tamanho)
 {	//Contador
 	double i=0;
 	//Pecorrer todo o vetor
@@ -66,7 +66,7 @@ void show_vector(double vetor[],double tamanho)
 		i++;
 	}
 }
-void gera_vetor(double vetor[],double tamanho,int opcao)
+void gera_vetor(long int vetor[],long int tamanho,int opcao)
 {
 	if (opcao==1)
 	{
@@ -120,9 +120,9 @@ void show_time(clock_t inicio,clock_t fim)
 int main()
 {
 	//Tamanho maximo do vetor
-	double vetor[100000000];
+	long int vetor[1000000];
 
-	double size = 10000;
+	int size = 1000000;
 
 	inicio_tela();
 

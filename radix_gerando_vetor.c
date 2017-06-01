@@ -14,7 +14,9 @@
 */
 void show_time(clock_t inicio,clock_t fim)
 {	
-	printf("Elapsed time : %f seconds\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+	printf("\n\n============================================\n");
+	printf("O tempo de execucao foi : %f segundos\n", (double)(fim - inicio) / CLOCKS_PER_SEC);
+	printf("============================================\n");
 }
 
 int acha_maior(int vetor[],int tamanho)
@@ -176,34 +178,70 @@ void ordena(int vetor[],int tamanho, int passos)
 		radixsort(vetor,vetor,tamanho);
 	}
 }
+
+void gera_vetor(int vetor[],int tamanho)
+{
+	for (int i = 0; i < tamanho; ++i)
+	{
+		vetor[i]=tamanho-i;
+	}
+}
+int recebe_do_usuario()
+{
+	int qnt;
+
+	printf("======================\n      RADIX SORT     \n====================== \n");
+	printf("\n\nEscolha o valor do R entre 8 ou 32 bits");
+	printf("\n->");
+	scanf("%d",&qnt);
+
+	while(qnt!=8 && qnt!=32)
+	{
+		printf("\nEscolha entre 8 ou 32\n");
+		printf("->");
+		scanf("%d",&qnt);
+	}
+	if(qnt==8)
+	{
+		qnt = 4;
+	}
+	else
+	{
+		qnt = 1;
+	}
+
+	return qnt;
+}
+
 int main()
 {	
-	clock_t inicio = clock();
-	//Variavel que ira receber a quantidade numeros
-	int t;
 	//Contador
 	int i=0;
+
 	//Tamanho maximo do vetor
 	unsigned int vetor[1000000];
-	//Numero de vezes que sera digitado um numero
-	scanf("%d",&t);
 
-	//Lendo T numeros e salvando no vetor.
-	while(t>i)
-	{
-		scanf("%d",&vetor[i]);
-		i++;
-	}
-	
 	//Tamanho e t-1 para nao acessar possicoes invalidas
-	int size = t ;
-	int passos =4;
-	//Ordena , funcao que ira chamar o radix
+	int size = 1000000;
+
+	int passos;
+	passos = recebe_do_usuario();
+	
+	//Funcao que gera vetor decrescente
+	gera_vetor(vetor,size);
+
+	//Inicia o tempo
+	clock_t inicio = clock();//Ordena , funcao que ira chamar o radix
+
+	//Chama Radix
 	ordena(vetor,size,passos);
-	//Mostra vetor ordenado
-	show_vector(vetor,t);
+
 	//Variavel para fim do tempo
 	clock_t fim = clock();
+
+	//Mostra vetor ordenado
+	//show_vector(vetor,size);
+
 	//Mostra o tempo
 	show_time(inicio,fim);
 

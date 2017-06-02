@@ -1,7 +1,10 @@
-# PAA2017
+### Developed by : GABRIEL PEREIRA PINHEIRO
+### Email : gabriel.pereira.pinheiro@gmail.com
 
-AUTOR : GABRIEL PEREIRA PINHEIRO
+# SPOJ SOLUCTIONS :
+
+The files quicksort.c  and radixsort.c are two differents soluctions to problem TSORT on Sphere Online Judge ( SPOJ )
 
 
-Trabalho de Projeto e Analise de Algoritmos - 2017/1
-Univerisade de Brasília (UnB)
+http://br.spoj.com/problems/TSORT/
+

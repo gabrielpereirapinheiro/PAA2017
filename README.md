@@ -1,5 +1,10 @@
-### Developed by : GABRIEL PEREIRA PINHEIRO
-### Email : gabriel.pereira.pinheiro@gmail.com
+## Developers
+- GABRIEL PEREIRA PINHEIRO
+### Email
+- gabriel.pereira.pinheiro@gmail.com
+
+_________________________________________________________________________________________________________________________________________
+## Fuction
 
 # SPOJ SOLUCTIONS :
 
